@@ -1,2 +1,2 @@
 # Wiki
-This is where I dump random info about things I find interesting.
+This is where I put information about things I find interesting.
