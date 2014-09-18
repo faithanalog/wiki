@@ -72,6 +72,8 @@
 #### License ####
 - Chose the right license, [http://choosealicense.com/licenses/](http://choosealicense.com/licenses/)
 - Types
+
+	Please see the sub-folder `licenses` for full text license files from the source sites. Or you can use the links under each type
 	- GPL
 		is the most widely used free software license and has a strong copyleft requirement. When distributing derived works, the source code of the work must be made available under the same license. There are multiple variants of the GPL, each with different requirements.
 		- GNU GPL v2.0 [http://www.gnu.org/licenses/gpl-2.0.txt](http://www.gnu.org/licenses/gpl-2.0.txt)
