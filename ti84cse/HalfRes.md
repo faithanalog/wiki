@@ -4,7 +4,7 @@ Half res mode is an LCD mode which results in a halved horizontal resolution.
 This can also be used for double buffering, because one can write to the
 left side of the screen while displaying the right side or vice versa.
 
-Entering half-res mode takes 3 steps:
+Entering half-res mode takes 4 steps:
   1. Enable interlacing
   2. Enable partial images 1 and 2
   3. Position the source areas of both partial images on top of each other, and make them 160 pixels in size.
