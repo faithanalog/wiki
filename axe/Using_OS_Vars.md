@@ -2,7 +2,7 @@
 
 ##Saving to OS strings
 1. Create a string variable with a length equal to your string length
-2. Copy the contents of your string to the returned pointer, without the
+2. Copy the contents of your string to the returned pointer, excluding the
    0 byte (null terminator) at the end.
 
 Keep in mind that in Axe strings are stored as single byte characters
