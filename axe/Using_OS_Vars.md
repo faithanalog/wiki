@@ -9,7 +9,7 @@ Keep in mind that in Axe strings are stored as single byte characters
 which do not match up exactly to the OS tokens used to stored OS
 strings. This means that lower case letters and many special characters
 will not display properly when saved to an OS string, including { } ( )
-[ ]. All upper case letters, numbers, spaces should work properly.
+[ ]. All upper case letters, numbers, and spaces should work properly.
 
 ###Example:
 ```
