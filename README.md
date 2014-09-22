@@ -1,2 +1,2 @@
 # Wiki
-This is where I put information about things I find interesting.
+This is where Dasoren and I put information about things we find interesting.
