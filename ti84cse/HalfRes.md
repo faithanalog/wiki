@@ -5,9 +5,10 @@ This can also be used for double buffering, because one can write to the
 left side of the screen while displaying the right side or vice versa.
 
 Entering half-res mode takes 3 steps:
-  1. Enabling interlacing
-  2. Enabling partial images 1 and 2
-  3. Positioning both partial images on top of each other
+  1. Enable interlacing
+  2. Enable partial images 1 and 2
+  3. Position the source areas of both partial images on top of each other, and make them 160 pixels in size.
+  4. Set the output destinations of the partial images to be 160 pixels apart.
 
 ## Enabling Interlacing
 To enable interlacing, set bit 10 of LCD register 01h
