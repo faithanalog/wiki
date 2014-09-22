@@ -22,6 +22,11 @@ will not display properly when saved to an OS string, including { } ( )
 length(Str1)->L
 
 .Create string var to hold our data
+.If GetCalc() returns 0, it means variable
+.creation failed (usually due to not enough ram).
+.You should check for this error in your
+.code and not write your string if it happens.
+.My example code, however, does not do this
 GetCalc(GDB1SAVE,L)->D
 
 .Copy contents to newly created string
