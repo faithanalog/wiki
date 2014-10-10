@@ -56,7 +56,7 @@ out (10h),a
 out (10h),a
 ld a,%00000001  ;Disable both partial images
 out (11h),a
-ld a,%01001100  ;Default values for low bits
+ld a,%00110011  ;Default values for low bits
 out (11h),a
 ```
 
