@@ -93,7 +93,7 @@ out (11h),a
 ld a,160        ;Display position of second img = 160
 out (11h),a
 
-ld c,10h        ;Used later to simplify some register setting code
+ld c,11h        ;Used later to simplify some register setting code
 
 ld a,81h        ;Img 1 start line
 out (10h),a
