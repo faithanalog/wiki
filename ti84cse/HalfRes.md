@@ -42,9 +42,9 @@ Partial images are enabled by setting bits 12 and 13 of lcd register
 ld a,07h
 out (10h),a
 out (10h),a
-ld a,%00110001  ;Enable both partial images
+ld a,%00110000  ;Enable both partial images
 out (11h),a
-ld a,%01001100  ;Default values for low bits
+ld a,%00110011  ;Default values for low bits
 out (11h),a
 ```
 
