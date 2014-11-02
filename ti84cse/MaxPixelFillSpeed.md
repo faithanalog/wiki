@@ -12,22 +12,22 @@ logic you may have. It also assumes that interrupts are disabled.
 The code I'll be using to calculate max fill rate is
 
 ```z80
-;Input: HL = Amount of pixels to output
+;Input: HL = data
+;       DE = Amount of pixels to output
 ;            Generally this would be width * height
-;            This means that HL can never be the size of the ENTIRE screen,
+;            This means that DE can never be the size of the ENTIRE screen,
 ;            just 85.3% of it. Normally you'ld be in half-res mode though.
 
-    ld b,l
+    ld b,e
+    ld c,11h
 
-;If B != 0, we need an extra iteration
-    ld a,b
-    or a
-    jr z,$+3
-    inc h
+;If B != 0, we need an extra iteration, so D needs to be incremented
+    dec de
+    inc d
 
 _dispSprtLp:
     otir
-    dec h
+    dec d
     jp nz,_dispSprtLp
 ```
 
@@ -42,44 +42,49 @@ instructions take more than one T-State to run. The ones we care about are:
 
 `OTIR: (21 * (B - 1)) + 16` If `B == 0`, evaluate `B - 1` as `255`
 
-`DEC H: 4`
+`DEC D: 4`
 
 `JP nz, ADDR: 10`
 
+Now, the hardware adds an extra 4 T-states to ever OUT to the LCD port, so
+the TRUE cost of OTIR is
+
+`OTIR: (25 * (B - 1)) + 20`
+
 Based on those numbers, we can calculate the amount of T-states for any given
-input of HL
+input of DE
 
-When B = 0, the loop takes (21 * 255 + 16) + 4 + 10 T-States, or 5385.
-Therefore if L == 0
+When B = 0, the loop takes (25 * 255 + 20) + 4 + 10 T-States, or 6409.
+Therefore if E == 0
 
-`f(H,0) = 5385 * H`
+`f(D,0) = 6409 * D`
 
-Otherwise if L > 0
+Otherwise if E > 0
 
-`f(H,L) = ((21 * (L - 1)) + 30) + 5385 * H`
+`f(D,E) = ((25 * (E - 1)) + 34) + 6409 * D`
 
 
-To simplify calculations, I'm going to ignore the fact that 'H' can not be
+To simplify calculations, I'm going to ignore the fact that 'D' can not be
 greater than 255. This allows me to use the above equation for the dimensions
 of the entire screen, and get a reasonably close estimate of how much time it
 would take.
 
 ##The calculations
-The screen is 320x240 pixels large. 320 * 240 = 76800. 76800 / 256 = 300, so
-H = 300 and L = 0. 300 * 5385 = 1,615,500.
+The screen is 320x240 pixels large. Each pixel is 2 bytes. 320 * 240 * 2 = 153600. 153600 / 256 = 600, so
+D = 600 and E = 0. 600 * 6409 = 3,845,400.
 
 To update the entire screen with this method it takes
 1.077 seconds. Not very promising, but here's a table of screen percentages
 vs how much time it takes to update. For any dimensions that you want to calculate
 yourself, the simplest way would be to use this formula.
 
-`(WIDTH * HEIGHT) / (320 * 240) * 1615500`
+`(WIDTH * HEIGHT) / (320 * 240) * 3845400`
 
-Divide 1,500,000 by the result to get framerate.
+Divide 15,000,000 by the result to get framerate.
 
 Percent of Screen | T-states  | Theoretical Frames/Second | Dimensions
 ----------------- | --------  | ------------------------- | ----------
-100%              | 1,615,500 | 0.93 FPS                  | 320 x 240
-50%               | 807,750   | 1.86 FPS                  | 160 x 240 (Half Res)
-5.3%              | 86,160    | 17.41 FPS                 | 64 x 64 (Large sprite)
-2.7%              | 43,080    | 34.8 FPS                  | 32 x 64 (Large sprite Half Res)
+100%              | 3,845,400 | 3.9 FPS                   | 320 x 240
+50%               | 1,922,700 | 7.8 FPS                   | 160 x 240 (Half Res)
+5.3%              | 205,088   | 73.13 FPS                 | 64 x 64 (Large sprite)
+2.7%              | 102,544   | 146.28 FPS                | 32 x 64 (Large sprite Half Res)
