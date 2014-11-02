@@ -50,13 +50,14 @@ Based on those numbers, we can calculate the amount of T-states for any given
 input of HL
 
 When B = 0, the loop takes (21 * 255 + 16) + 4 + 10 T-States, or 5385.
-Therefore if L > 0
+Therefore if L == 0
+
+`f(H,0) = 5385 * H`
+
+Otherwise if L > 0
 
 `f(H,L) = ((21 * (L - 1)) + 30) + 5385 * H`
 
-Otherwise if L == 0
-
-`f(H,L) = 5385 * H`
 
 To simplify calculations, I'm going to ignore the fact that 'H' can not be
 greater than 255. This allows me to use the above equation for the dimensions
