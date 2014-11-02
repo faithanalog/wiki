@@ -1,11 +1,10 @@
 #Max pixel fill speed with OTIR
 
-One of the fastest practical ways to write arbitrary pixels (no 1-color rectangles)
-to the LCD is with an OTIR loop copying pixel data directly from memory.
-That being said, I was wondering how many pixels you could theoretically
-update per frame. As mentioned, this is theoretical. This does not take
-into account the overhead of adjusting the LCD window, or any of the other
-logic you may have. It also assumes that interrupts are disabled.
+One of the fastest practical ways to write arbitrary pixels (no 1-color rectangles) to the LCD is
+with an OTIR loop copying pixel data directly from memory. That being said, I was wondering how many
+pixels you could theoretically update per frame. As mentioned, this is theoretical. This does not
+take into account the overhead of adjusting the LCD window, or any of the other logic you may have.
+It also assumes that interrupts are disabled.
 
 ##The code
 
@@ -31,14 +30,13 @@ _dispSprtLp:
     jp nz,_dispSprtLp
 ```
 
-I use JP in the loop to save a few extra cycles. When calculating the
-numbers below, I'm basing it only on the runtime of the loop,
-and I'm not calculating the negligible setup time for the loop.
+I use JP in the loop to save a few extra cycles. When calculating the numbers below, I'm basing it
+only on the runtime of the loop, and I'm not calculating the negligible setup time for the loop.
 
 ##The numbers
-The TI-84+CSE uses a z80 processor, which can be set to run at 15Mhz.
-This means that it has about 15,000,000 cycles (or T-States) per second. All
-instructions take more than one T-State to run. The ones we care about are:
+The TI-84+CSE uses a z80 processor, which can be set to run at 15Mhz. This means that it has about
+15,000,000 cycles (or T-States) per second. All instructions take more than one T-State to run. The
+ones we care about are:
 
 `OTIR: (21 * (B - 1)) + 16` If `B == 0`, evaluate `B - 1` as `255`
 
@@ -64,19 +62,17 @@ Otherwise if E > 0
 `f(D,E) = ((25 * (E - 1)) + 34) + 6409 * D`
 
 
-To simplify calculations, I'm going to ignore the fact that 'D' can not be
-greater than 255. This allows me to use the above equation for the dimensions
-of the entire screen, and get a reasonably close estimate of how much time it
-would take.
+To simplify calculations, I'm going to ignore the fact that 'D' can not be greater than 255. This
+allows me to use the above equation for the dimensions of the entire screen, and get a reasonably
+close estimate of how much time it would take.
 
 ##The calculations
-The screen is 320x240 pixels large. Each pixel is 2 bytes. 320 * 240 * 2 = 153600. 153600 / 256 = 600, so
-D = 600 and E = 0. 600 * 6409 = 3,845,400.
+The screen is 320x240 pixels large. Each pixel is 2 bytes. 320 * 240 * 2 = 153600. 153600 / 256 =
+600, so D = 600 and E = 0. 600 * 6409 = 3,845,400.
 
-To update the entire screen with this method it takes
-1.077 seconds. Not very promising, but here's a table of screen percentages
-vs how much time it takes to update. For any dimensions that you want to calculate
-yourself, the simplest way would be to use this formula.
+To update the entire screen with this method it takes 0.25636 seconds. Not very promising, but
+here's a table of screen percentages vs how much time it takes to update. For any dimensions that
+you want to calculate yourself, the simplest way would be to use this formula.
 
 `(WIDTH * HEIGHT) / (320 * 240) * 3845400`
 
