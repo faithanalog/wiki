@@ -15,7 +15,7 @@ The code I'll be using to calculate max fill rate is
 ;       DE = Amount of pixels to output
 ;            Generally this would be width * height
 ;            This means that DE can never be the size of the ENTIRE screen,
-;            just 85.3% of it. Normally you'ld be in half-res mode though.
+;            just 85.3% of it.
 
     ld b,e
     ld c,11h
