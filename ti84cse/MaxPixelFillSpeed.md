@@ -61,14 +61,14 @@ Otherwise if L > 0
 
 To simplify calculations, I'm going to ignore the fact that 'H' can not be
 greater than 255. This allows me to use the above equation for the dimensions
-of the entire screen, and get a reasonable close estimate of how much time it
+of the entire screen, and get a reasonably close estimate of how much time it
 would take.
 
 ##The calculations
 The screen is 320x240 pixels large. 320 * 240 = 76800. 76800 / 256 = 300, so
-H = 300 and L = 0.
+H = 300 and L = 0. 300 * 5385 = 1,615,500.
 
-300 * 5385 = 1,615,500. To update the entire screen with this method it takes
+To update the entire screen with this method it takes
 1.077 seconds. Not very promising, but here's a table of screen percentages
 vs how much time it takes to update. For any dimensions that you want to calculate
 yourself, the simplest way would be to use this formula.
