@@ -13,7 +13,7 @@ This routine converts a little endian value to a little endian BCD value
 
 ```z80
 ;Converts a 24 bit unsigned int pointed to by HL to BCD
-;Convert to BCD with double dabble
+;Convert to BCD with double dabble method, see http://en.wikipedia.org/wiki/Double_dabble
 ;Handles up to a 10 digit number
 ;Input: HL - pointer to number
 ;Output: bcdScratch - stores BCD number.
