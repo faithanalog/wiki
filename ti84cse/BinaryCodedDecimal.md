@@ -110,6 +110,5 @@ _dispBCDDigits:
     pop hl
     dec hl
     djnz _dispBCDDigits
-    ei
     ret
 ```
