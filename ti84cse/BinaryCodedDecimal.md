@@ -40,6 +40,8 @@ _zeroScratch:
         ;Do increment
         ld c,NUM_DIGITS
         ld hl,bcdScratch
+        ;Iterate through each BCD digit.
+        ;If digit > 4, add 3
         _bcdIncLp:
             ld a,(hl)
             cp 5
