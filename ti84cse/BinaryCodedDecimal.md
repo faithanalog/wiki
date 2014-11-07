@@ -3,8 +3,8 @@ One method for display numbers that take more than 16 bits is to convert it to B
 first, and display the result. BCD works by using four bits to store each decimal (base 10) digit of
 a number. The following code can convert a number to BCD, and display it. It's currently written to
 convert a 24 bit number to a 10 digit BCD number, but can be modified to support anything really. It
-is ineffecient, and uses one byte for each digit, rather than storing two digits per byte. This is
-useful though because it makes the display routine simpler.
+is memory ineffecient, because it uses one byte for each digit rather than storing two digits per
+byte. This is useful though because it makes the display routine simpler.
 
 
 ##Conversion to BCD
