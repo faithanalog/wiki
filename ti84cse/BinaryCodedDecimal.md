@@ -1,5 +1,5 @@
 #Binary coded decimal
-One method for display numbers that take more than 8 bits is to convert it to Binary Coded Decimal
+One method for display numbers that take more than 16 bits is to convert it to Binary Coded Decimal
 first, and display the result. BCD works by using four bits to store each decimal (base 10) digit of
 a number. The following code can convert a number to BCD, and display it. It's currently written to
 convert a 24 bit number to a 10 digit BCD number, but can be modified to support anything really. It
@@ -43,8 +43,9 @@ _zeroScratch:
         _bcdIncLp:
             ld a,(hl)
             cp 5
-            jr c,$+4
+            jr c,{@}
             add a,3
+            @:
             ld (hl),a
             inc hl
             dec c
