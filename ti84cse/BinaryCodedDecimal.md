@@ -77,7 +77,9 @@ _zeroScratch:
 
 ##Displaying BCD
 
-Displaying BCD is quite simple. This routine displays an unsigned BCD value, without leading zeroes
+Displaying BCD is quite simple, since each digit is stored within its own byte. You can simply add
+the char code for '0' to the value to get the text char you want. This routine displays an unsigned
+BCD value, without leading zeroes
 
 ```z80
 ;Displays the BCD value at HL
