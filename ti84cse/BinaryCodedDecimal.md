@@ -64,8 +64,8 @@ _zeroScratch:
             rla
             bit 4,a
             jr z,{@}
-            and %1111
-            scf ;Set carry if bit 4 set
+            and %1111 ;Mask out high bits, since we only want the lower 4 bits for the digit
+            scf       ;Set carry if bit 4 set
             @:
             ld (hl),a
             inc hl
