@@ -44,15 +44,15 @@ ones we care about are:
 
 `JP nz, ADDR: 10`
 
-Now, the hardware adds an extra 4 T-states to ever OUT to the LCD port, so
-the TRUE cost of OTIR is
+Now, the hardware adds an extra 4 T-states for every OUT to the LCD port, so
+the _true_ cost of OTIR is
 
 `OTIR: (25 * (B - 1)) + 20`
 
 Based on those numbers, we can calculate the amount of T-states for any given
 input of DE
 
-When B = 0, the loop takes (25 * 255 + 20) + 4 + 10 T-States, or 6409.
+When B == 0, the loop takes (25 * 255 + 20) + 4 + 10 T-States, or 6409.
 Therefore if E == 0
 
 `f(D,0) = 6409 * D`
