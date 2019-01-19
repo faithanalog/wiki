@@ -1,4 +1,4 @@
-#Binary coded decimal
+# Binary coded decimal
 One method for display numbers that take more than 16 bits is to convert it to Binary Coded Decimal
 first, and display the result. BCD works by using four bits to store each decimal (base 10) digit of
 a number. The following code can convert a number to BCD, and display it. It's currently written to
@@ -7,7 +7,7 @@ is memory ineffecient, because it uses one byte for each digit rather than stori
 byte. This is useful though because it makes the display routine simpler.
 
 
-##Conversion to BCD
+## Conversion to BCD
 
 This routine converts a little endian value to a little endian BCD value
 
@@ -77,7 +77,7 @@ _zeroScratch:
     ret
 ```
 
-##Displaying BCD
+## Displaying BCD
 
 Displaying BCD is quite simple, since each digit is stored within its own byte. You can simply add
 the char code for '0' to the value to get the text char you want. This routine displays an unsigned
