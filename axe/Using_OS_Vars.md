@@ -1,6 +1,6 @@
-#Manipulating TI-OS Variables in Axe
+# Manipulating TI-OS Variables in Axe
 
-##Saving to OS strings
+## Saving to OS strings
 1. Create a string variable with a length equal to your string length
 2. Copy the contents of your string to the returned pointer, excluding the
    0 byte (null terminator) at the end.
@@ -11,7 +11,7 @@ strings. This means that lower case letters and many special characters
 will not display properly when saved to an OS string, including { } ( )
 [ ]. All upper case letters, numbers, and spaces should work properly.
 
-###Example:
+### Example:
 ```
 .We will write to OS string 1
 "Str1"->GDB1SAVE
