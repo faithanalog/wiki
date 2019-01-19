@@ -1,4 +1,4 @@
-#Max pixel fill speed with OTIR
+# Max pixel fill speed with OTIR
 
 One of the fastest practical ways to write arbitrary pixels (no 1-color rectangles) to the LCD is
 with an OTIR loop copying pixel data directly from memory. That being said, I was wondering how many
@@ -6,7 +6,7 @@ pixels you could theoretically update per frame. As mentioned, this is theoretic
 take into account the overhead of adjusting the LCD window, or any of the other logic you may have.
 It also assumes that interrupts are disabled.
 
-##The code
+## The code
 
 The code I'll be using to calculate max fill rate is
 
@@ -66,7 +66,7 @@ To simplify calculations, I'm going to ignore the fact that 'D' can not be great
 allows me to use the above equation for the dimensions of the entire screen, and get a reasonably
 close estimate of how much time it would take.
 
-##The calculations
+## The calculations
 The screen is 320x240 pixels large. Each pixel is 2 bytes. 320 * 240 * 2 = 153600. 153600 / 256 =
 600, so D = 600 and E = 0. 600 * 6409 = 3,845,400.
 
