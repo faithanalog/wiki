@@ -33,7 +33,7 @@ _dispSprtLp:
 I use JP in the loop to save a few extra cycles. When calculating the numbers below, I'm basing it
 only on the runtime of the loop, and I'm not calculating the negligible setup time for the loop.
 
-##The numbers
+## The numbers
 The TI-84+CSE uses a z80 processor, which can be set to run at 15Mhz. This means that it has about
 15,000,000 cycles (or T-States) per second. All instructions take more than one T-State to run. The
 ones we care about are:
